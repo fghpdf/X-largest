@@ -1,4 +1,4 @@
-package main
+package topx
 
 // A PriorityQueue implements heap.Interface and holds Items.
 type PriorityQueue []*Record

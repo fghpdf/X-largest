@@ -1,4 +1,4 @@
-package main
+package topx
 
 import (
 	"container/heap"
@@ -10,21 +10,25 @@ type Record struct {
 	count      int64
 }
 
-func topXFrequent(records []*Record, x int64) []string {
+func getTopXFrequent(records []*Record, x int64) []string {
+	return getIdentifiers(topXFrequent(records, x))
+}
+
+func topXFrequent(records []*Record, x int64) []*Record {
 	recordsLen := int64(len(records))
 	if recordsLen <= x {
 		// all records are in the top x
-		return getIdentifiers(records)
+		return records
 	}
 
 	q := PriorityQueue{}
 	for _, record := range records {
 		heap.Push(&q, record)
 	}
-	var result []string
+	var result []*Record
 	for int64(len(result)) < x {
 		item := heap.Pop(&q).(*Record)
-		result = append(result, item.Identifier)
+		result = append(result, item)
 	}
 	return result
 }

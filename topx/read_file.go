@@ -1,25 +1,11 @@
-package main
+package topx
 
 import (
 	"bufio"
-	"log"
 	"os"
 	"strconv"
 	"strings"
 )
-
-func main() {
-	records, err := readSingleFile("tmp/test.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	// get top x frequent
-	topX := topXFrequent(records, 3)
-	for _, identifier := range topX {
-		log.Println(identifier)
-	}
-}
 
 // readSingleFile read single file line by line
 func readSingleFile(fileName string) ([]*Record, error) {
