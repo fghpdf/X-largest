@@ -20,13 +20,13 @@ Example:
 ### Top-X
 To find top-X values, we can use a heap.
 
-First, we will maintain a min heap of size X.
+First, we will maintain a min-heap of size X.
 
-Then, we can put elements into the heap. 
+Then, we can put elements into the heap.
 
-If the size of heap is bigger than X, we can remove the top element of heap.
+If the size of the heap is bigger than X, we can remove the top element of the heap.
 
-So the time complexity and space complexity depends on the size of heap.
+So the time complexity and space complexity depends on the size of the heap.
 
 | Complexity | Value    |
 |------------|----------|
@@ -53,7 +53,7 @@ It will generate a unique identifier by [snowflake](https://en.wikipedia.org/wik
 
 The tool will pick the line whose number >= 99900 and write it into a new file.
 
-This file named as `gen_top_x.txt`, it can help us to test more conveniently.
+This file named `gen_top_x.txt` can help us to test more conveniently.
 
 #### 🧮Calculate the number of files
 Goroutine can use the cores of the machine.
@@ -69,7 +69,7 @@ So our formula is:
 
 `processNum := fileSize / tmpFileSize`
 
-e.g. we have 1 GB of huge file, and we have 4 cores.
+e.g. we have 1 GB of the huge file, and we have 4 cores.
 
 `temp file size = 1 GB / (16 * 4) = 0.015625 GB = 16 MB`
 
@@ -87,9 +87,9 @@ make build
 You will get two bin files in the `dist` folder.
 1. generate.bin can generate a huge file to help you test.
 2. main.bin is a cli tool to get the top x elements.
-  * run `./dist/main.bin -h` to get help for this command.
-  * run `./dist/main.bin -file=<file path> -x=<top xx>` to get the top x elements of the file.
-  * run `./dist/main.bin -x=<top x>` to get the top x elements of the stdin.
+* run `./dist/main.bin -h` to get help for this command.
+* run `./dist/main.bin -file=<file path> -x=<top xx>` to get the top x elements of the file.
+* run `./dist/main.bin -x=<top x>` to get the top x elements of the stdin.
 3. main.bin will print the top x elements to stdout.
 
 ## Integration Test and Unit Test
@@ -100,7 +100,7 @@ make test
 
 The test will generate a huge file and then get the top x elements of the huge file.
 
-It will take a long time to generate huge file and split it, just relax ☕️.
+It will take a long time to generate a huge file and split it, just relax ☕️.
 
 When everything is done, you can get the coverage of the program.
 ![](https://s3.bmp.ovh/imgs/2022/06/23/fea5c317c57a978e.png)
@@ -124,7 +124,7 @@ GitHub action is a great tool to test the program.
 ![](https://s3.bmp.ovh/imgs/2022/06/24/40325563289c1109.jpg)
 
 ## Performance
-In my personal computer, I got the following performance using 1GB of huge file:
+On my personal computer, I got the following performance using 1GB of huge file:
 
 `./dist/main.bin -file=tmp/gen_records.txt -x=394`
 
