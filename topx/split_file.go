@@ -10,7 +10,6 @@ import (
 	"path/filepath"
 	"runtime"
 	"sync"
-	"time"
 )
 
 const MaxMemorySize = 1024 * 1024 * 1024 // 1G
@@ -24,8 +23,6 @@ func splitFile(fileName string) error {
 	if err != nil {
 		return err
 	}
-
-	start := time.Now()
 
 	// open file
 	file, err := os.Open(fileName)
@@ -82,9 +79,6 @@ func splitFile(fileName string) error {
 	}
 	bar.Finish()
 
-	// calc time
-	elapsed := time.Since(start)
-	logrus.Infoln("split file elapsed:", elapsed)
 	return nil
 }
 

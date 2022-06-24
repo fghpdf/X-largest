@@ -5,9 +5,12 @@ import (
 	"os"
 	"path/filepath"
 	"sync"
+	"time"
 )
 
 func HandleHugeFileTopX(fileName string, x int64) []string {
+	start := time.Now()
+
 	// check file exists
 	if _, err := os.Stat(fileName); os.IsNotExist(err) {
 		logrus.Panicf("File %s does not exist\n", fileName)
@@ -19,11 +22,17 @@ func HandleHugeFileTopX(fileName string, x int64) []string {
 		logrus.Panicf("Split file %s failed: %s\n", fileName, err)
 	}
 
+	splitTime := time.Since(start)
+	logrus.Infof("Split file finished, it takes %s\n", splitTime)
+
 	// get top x frequent from split files
 	records, err := getTopXFromSplitFiles(x)
 	if err != nil {
 		logrus.Panicf("Get top x frequent from split files failed: %s\n", err)
 	}
+
+	topXTime := time.Since(start)
+	logrus.Infof("Get top x frequent finished, it takes %s\n", topXTime-splitTime)
 
 	return records
 }
